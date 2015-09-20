@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Gudu's Blog]]></title>
+  <link href="http://yoursite.com/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2015-09-20T05:47:21+00:00</updated>
+  <id>http://yoursite.com/</id>
+  <author>
+    <name><![CDATA[gudu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Test Highlight]]></title>
+    <link href="http://yoursite.com/blog/2015/09/19/test-highlight/"/>
+    <updated>2015-09-19T07:06:41+00:00</updated>
+    <id>http://yoursite.com/blog/2015/09/19/test-highlight</id>
+    <content type="html"><![CDATA[<h3>C</h3>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number marked start'></div><div data-line='3' class='line-number marked end'></div><div data-line='4' class='line-number'></div></pre></td><td class='main  java'><pre><div class='line'><span class="kt">int</span> <span class="nf">main</span><span class="o">(</span><span class="kt">void</span><span class="o">)</span>
+</div><div class='line marked start'><span class="o">{</span>
+</div><div class='line marked end'>    <span class="n">puts</span><span class="o">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="o">);</span>
+</div><div class='line'><span class="o">}</span>
+</div></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Generate 'Table of Contents']]></title>
+    <link href="http://yoursite.com/blog/2015/09/18/generate-table-of-contents/"/>
+    <updated>2015-09-18T20:00:32+00:00</updated>
+    <id>http://yoursite.com/blog/2015/09/18/generate-table-of-contents</id>
+    <content type="html"><![CDATA[<p>After I got Octopress setup, I found there is no easy way to generate the table of contents of my blog,
+actually there is a way by using the generate_toc extension of rdiscount markdown parser, but the extension
+always generates table of contents from H1, so I decidied to do it by using the tableofcontents jquery plugin.</p>
+
+<h3>Download Table of Contents jQuery Plugins</h3>
+
+<p>Download at <a href="http://fuelyourcoding.com/scripts/toc/">http://fuelyourcoding.com/scripts/toc/</a> and put jquery.tableofcontents.min.js in your source/javascripts
+directory.</p>
+
+<h3>Create tocgenerator.js</h3>
+
+<p>Create a tocgenerator.js under source/javascripts with below content:</p>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div><div data-line='9' class='line-number'></div><div data-line='10' class='line-number'></div><div data-line='11' class='line-number'></div><div data-line='12' class='line-number'></div><div data-line='13' class='line-number'></div><div data-line='14' class='line-number'></div><div data-line='15' class='line-number'></div></pre></td><td class='main  javascript'><pre><div class='line'><span class="kd">function</span> <span class="nx">generateTOC</span><span class="p">(</span><span class="nx">insertBefore</span><span class="p">,</span> <span class="nx">heading</span><span class="p">,</span> <span class="nx">startLv</span><span class="p">)</span> <span class="p">{</span>
+</div><div class='line'>    <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">(</span><span class="s2">&quot;&lt;div id=&#39;tocBlock1&#39;&gt;&lt;/div&gt;&quot;</span><span class="p">);</span>
+</div><div class='line'>    <span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">(</span><span class="s2">&quot;&lt;ul id=&#39;toc&#39;&gt;&lt;/ul&gt;&quot;</span><span class="p">);</span>
+</div><div class='line'>    <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">(</span><span class="nx">insertBefore</span><span class="p">).</span><span class="nx">first</span><span class="p">();</span>
+</div><div class='line'> </div><div class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">heading</span><span class="p">)</span> <span class="p">{</span>
+</div><div class='line'>        <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;span class=&quot;tocHeading&quot;&gt;&#39;</span> <span class="o">+</span> <span class="nx">heading</span> <span class="o">+</span> <span class="s1">&#39;&lt;/span&gt;&#39;</span><span class="p">);</span>
+</div><div class='line'>    <span class="p">}</span>
+</div><div class='line'> </div><div class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">startLv</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span> <span class="nx">startLv</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+</div><div class='line'> </div><div class='line'>    <span class="nx">div</span><span class="p">.</span><span class="nx">tableOfContents</span><span class="p">(</span><span class="nx">content</span><span class="p">,</span> <span class="p">{</span> <span class="nx">startLevel</span><span class="o">:</span> <span class="nx">startLv</span> <span class="p">});</span>
+</div><div class='line'>    <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">div</span><span class="p">);</span>
+</div><div class='line'>    <span class="nx">container</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">insertBefore</span><span class="p">);</span>
+</div><div class='line'><span class="p">}</span>
+</div></pre></td></tr></table></div></figure>
+
+
+<h3>Reference the javascript files in your blog</h3>
+
+<p>Add blow lines at the bottom of source/custom/head.html</p>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div></pre></td><td class='main  html'><pre><div class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</div><div class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;&#x7b;&#x7b; root_url }}/javascripts/jquery.tableofcontents.min.js&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</div><div class='line'> </div><div class='line'>// !!! Load jQuery before this
+</div><div class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</div><div class='line'>    <span class="nx">jQuery</span><span class="p">.</span><span class="nx">noConflict</span><span class="p">();</span>
+</div><div class='line'><span class="nt">&lt;/script&gt;</span>
+</div><div class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;&#x7b;&#x7b; root_url }}/javascripts/tocgenerator.js&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</div></pre></td></tr></table></div></figure>
+
+
+<h3>Add below lines</h3>
+
+<p>Add below lines to the source/custom/footer.html</p>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div><div data-line='9' class='line-number'></div><div data-line='10' class='line-number'></div><div data-line='11' class='line-number'></div><div data-line='12' class='line-number'></div><div data-line='13' class='line-number'></div><div data-line='14' class='line-number'></div><div data-line='15' class='line-number'></div><div data-line='16' class='line-number'></div><div data-line='17' class='line-number'></div><div data-line='18' class='line-number'></div><div data-line='19' class='line-number'></div><div data-line='20' class='line-number'></div><div data-line='21' class='line-number'></div><div data-line='22' class='line-number'></div><div data-line='23' class='line-number'></div><div data-line='24' class='line-number'></div><div data-line='25' class='line-number'></div></pre></td><td class='main  html'><pre><div class='line'>&#x7b;&#x25; if index %}
+</div><div class='line'>  &#x7b;&#x25; comment %}
+</div><div class='line'>  No table of contents on the index page.
+</div><div class='line'>  &#x7b;&#x25; endcomment %}
+</div><div class='line'> </div><div class='line'>&#x7b;&#x25; elsif page.toc == true %}
+</div><div class='line'>  &#x7b;&#x25; if page.tocstartlv %}
+</div><div class='line'>    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</div><div class='line'>    <span class="nx">jQuery</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</div><div class='line'>      <span class="c1">// Put a TOC right before the entry content.</span>
+</div><div class='line'>      <span class="cm">/*global generateTOC*/</span>
+</div><div class='line'>      <span class="nx">generateTOC</span><span class="p">(</span><span class="s1">&#39;.entry-content&#39;</span><span class="p">,</span> <span class="s2">&quot;&#x7b;&#x7b; page.toctitle }}&quot;</span><span class="p">,</span> <span class="s2">&quot;&#x7b;&#x7b; page.tocstartlv }}&quot;</span><span class="p">);</span>
+</div><div class='line'>    <span class="p">});</span>
+</div><div class='line'>    <span class="nt">&lt;/script&gt;</span>
+</div><div class='line'>  &#x7b;&#x25; else %}
+</div><div class='line'>    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</div><div class='line'>    <span class="nx">jQuery</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</div><div class='line'>      <span class="c1">// Put a TOC right before the entry content.</span>
+</div><div class='line'>      <span class="cm">/*global generateTOC*/</span>
+</div><div class='line'>      <span class="nx">generateTOC</span><span class="p">(</span><span class="s1">&#39;.entry-content&#39;</span><span class="p">,</span> <span class="s2">&quot;&#x7b;&#x7b; page.toctitle }}&quot;</span><span class="p">);</span>
+</div><div class='line'>    <span class="p">});</span>
+</div><div class='line'>    <span class="nt">&lt;/script&gt;</span>
+</div><div class='line'>  &#x7b;&#x25; endif %}
+</div><div class='line'> </div><div class='line'>&#x7b;&#x25; endif %}
+</div></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Hello World!!!]]></title>
+    <link href="http://yoursite.com/blog/2015/09/18/hello-world/"/>
+    <updated>2015-09-18T06:00:21+00:00</updated>
+    <id>http://yoursite.com/blog/2015/09/18/hello-world</id>
+    <content type="html"><![CDATA[<h3>C</h3>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div></pre></td><td class='main  c'><pre><div class='line'><span class="cp">#include &lt;stdlib.h&gt;</span>
+</div><div class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</div><div class='line'><span class="p">{</span>
+</div><div class='line'>    <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span>
+</div><div class='line'><span class="p">}</span>
+</div></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
+
+
+<h3>C++</h3>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div></pre></td><td class='main  cpp'><pre><div class='line'><span class="cp">#include &lt;iostream&gt;</span>
+</div><div class='line'> </div><div class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</div><div class='line'><span class="p">{</span>
+</div><div class='line'>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Hello, world!</span>
+</div><div class='line'><span class="s">&quot;;</span>
+</div><div class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</div><div class='line'><span class="p">}</span>
+</div></pre></td></tr></table></div></figure>
+
+
+<h3>CSharp</h3>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number marked start'></div><div data-line='5' class='line-number marked'></div><div data-line='6' class='line-number marked'></div><div data-line='7' class='line-number marked end'></div><div data-line='8' class='line-number'></div></pre></td><td class='main  csharp'><pre><div class='line'><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</div><div class='line'><span class="k">class</span> <span class="nc">Program</span>
+</div><div class='line'><span class="p">{</span>
+</div><div class='line marked start'>    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</div><div class='line marked'>    <span class="p">{</span>
+</div><div class='line marked'>        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span>
+</div><div class='line marked end'>    <span class="p">}</span>
+</div><div class='line'><span class="p">}</span>
+</div></pre></td></tr></table></div></figure>
+
+
+<h3>CoffeeScript</h3>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div></pre></td><td class='main  coffeescript'><pre><div class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;Hello, world!&#39;</span>
+</div></pre></td></tr></table></div></figure>
+
+
+<h3>Delphi</h3>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div></pre></td><td class='main  pas'><pre><div class='line'><span class="k">program</span> <span class="n">HelloWorld</span><span class="o">;</span>
+</div><div class='line'><span class="k">begin</span>
+</div><div class='line'>  <span class="nb">Writeln</span><span class="p">(</span><span class="s">&#39;Hello, world!&#39;</span><span class="p">)</span><span class="o">;</span>
+</div><div class='line'><span class="k">end</span><span class="o">.</span>
+</div></pre></td></tr></table></div></figure>
+
+
+<h3>Java</h3>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div><div data-line='9' class='line-number'></div><div data-line='10' class='line-number'></div><div data-line='11' class='line-number'></div><div data-line='12' class='line-number'></div></pre></td><td class='main  java'><pre><div class='line'><span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="o">;</span>  <span class="c1">//Importing class JFrame</span>
+</div><div class='line'><span class="kn">import</span> <span class="nn">javax.swing.JLabel</span><span class="o">;</span>  <span class="c1">//Importing class JLabel</span>
+</div><div class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+</div><div class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</div><div class='line'>        <span class="n">JFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JFrame</span><span class="o">();</span>           <span class="c1">//Creating frame</span>
+</div><div class='line'>        <span class="n">frame</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&quot;Hi!&quot;</span><span class="o">);</span>                 <span class="c1">//Setting title frame</span>
+</div><div class='line'>        <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">JLabel</span><span class="o">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="o">));</span><span class="c1">//Adding text to frame</span>
+</div><div class='line'>        <span class="n">frame</span><span class="o">.</span><span class="na">pack</span><span class="o">();</span>                          <span class="c1">//Setting size to smallest</span>
+</div><div class='line'>        <span class="n">frame</span><span class="o">.</span><span class="na">setLocationRelativeTo</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>     <span class="c1">//Centering frame</span>
+</div><div class='line'>        <span class="n">frame</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>                <span class="c1">//Showing frame</span>
+</div><div class='line'>    <span class="o">}</span>
+</div><div class='line'><span class="o">}</span>
+</div></pre></td></tr></table></div></figure>
+
+
+<h3>JavaScript</h3>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div></pre></td><td class='main  javascript'><pre><div class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;Hello, world!&#39;</span><span class="p">);</span>
+</div></pre></td></tr></table></div></figure>
+
+
+<h3>Objective-C</h3>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div></pre></td><td class='main  objc'><pre><div class='line'><span class="cp">#import</span>
+</div><div class='line'><span class="cp">#import</span>
+</div><div class='line'> </div><div class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</div><div class='line'><span class="p">{</span>
+</div><div class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Hello, world!&quot;</span><span class="p">);</span>
+</div><div class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</div><div class='line'><span class="p">}</span>
+</div></pre></td></tr></table></div></figure>
+
+
+<h3>Python</h3>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div></pre></td><td class='main  python'><pre><div class='line'><span class="k">print</span> <span class="s">&quot;Hello, world!&quot;</span>
+</div></pre></td></tr></table></div></figure>
+
+
+<h3>Ruby</h3>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div></pre></td><td class='main  ruby'><pre><div class='line'><span class="nb">puts</span> <span class="s2">&quot;Hello, world!&quot;</span>
+</div></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+</feed>

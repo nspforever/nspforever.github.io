@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Basic | Gudu's Blog]]></title>
+  <link href="http://yoursite.com/blog/categories/basic/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2015-09-20T05:47:21+00:00</updated>
+  <id>http://yoursite.com/</id>
+  <author>
+    <name><![CDATA[gudu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Hello World!!!]]></title>
+    <link href="http://yoursite.com/blog/2015/09/18/hello-world/"/>
+    <updated>2015-09-18T06:00:21+00:00</updated>
+    <id>http://yoursite.com/blog/2015/09/18/hello-world</id>
+    <content type="html"><![CDATA[<h3>C</h3>
+
+<pre><code class="c">#include &lt;stdlib.h&gt;
+int main(void)
+{
+    puts("Hello, world!");
+}
+</code></pre>
+
+<!-- more -->
+
+
+<h3>C++</h3>
+
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+int main()
+{
+    std::cout &lt;&lt; "Hello, world!
+";
+    return 0;
+}
+</code></pre>
+
+<h3>CSharp</h3>
+
+<pre><code class="csharp mark:4-7">using System;
+class Program
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("Hello, world!");
+    }
+}
+</code></pre>
+
+<h3>CoffeeScript</h3>
+
+<pre><code class="coffee">console.log 'Hello, world!'
+</code></pre>
+
+<h3>Delphi</h3>
+
+<pre><code class="pas">program HelloWorld;
+begin
+  Writeln('Hello, world!');
+end.
+</code></pre>
+
+<h3>Java</h3>
+
+<pre><code class="java">import javax.swing.JFrame;  //Importing class JFrame
+import javax.swing.JLabel;  //Importing class JLabel
+public class HelloWorld {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();           //Creating frame
+        frame.setTitle("Hi!");                 //Setting title frame
+        frame.add(new JLabel("Hello, world!"));//Adding text to frame
+        frame.pack();                          //Setting size to smallest
+        frame.setLocationRelativeTo(null);     //Centering frame
+        frame.setVisible(true);                //Showing frame
+    }
+}
+</code></pre>
+
+<h3>JavaScript</h3>
+
+<pre><code class="javascript">document.write('Hello, world!');
+</code></pre>
+
+<h3>Objective-C</h3>
+
+<pre><code class="objc">#import
+#import
+
+int main(void)
+{
+    NSLog(@"Hello, world!");
+    return 0;
+}
+</code></pre>
+
+<h3>Python</h3>
+
+<pre><code class="python">print "Hello, world!"
+</code></pre>
+
+<h3>Ruby</h3>
+
+<pre><code class="ruby">puts "Hello, world!"
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
