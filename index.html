@@ -143,72 +143,12 @@ always generates table of contents from H1, so I decidied to do it by using the 
 <p>Download at <a href="http://fuelyourcoding.com/scripts/toc/">http://fuelyourcoding.com/scripts/toc/</a> and put jquery.tableofcontents.min.js in your source/javascripts
 directory.</p>
 
-<h3>Create tocgenerator.js</h3>
-
-<p>Create a tocgenerator.js under source/javascripts with below content:</p>
-
-<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div><div data-line='9' class='line-number'></div><div data-line='10' class='line-number'></div><div data-line='11' class='line-number'></div><div data-line='12' class='line-number'></div><div data-line='13' class='line-number'></div><div data-line='14' class='line-number'></div><div data-line='15' class='line-number'></div></pre></td><td class='main  javascript'><pre><div class='line'><span class="kd">function</span> <span class="nx">generateTOC</span><span class="p">(</span><span class="nx">insertBefore</span><span class="p">,</span> <span class="nx">heading</span><span class="p">,</span> <span class="nx">startLv</span><span class="p">)</span> <span class="p">{</span>
-</div><div class='line'>    <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">(</span><span class="s2">&quot;&lt;div id=&#39;tocBlock1&#39;&gt;&lt;/div&gt;&quot;</span><span class="p">);</span>
-</div><div class='line'>    <span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">(</span><span class="s2">&quot;&lt;ul id=&#39;toc&#39;&gt;&lt;/ul&gt;&quot;</span><span class="p">);</span>
-</div><div class='line'>    <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">(</span><span class="nx">insertBefore</span><span class="p">).</span><span class="nx">first</span><span class="p">();</span>
-</div><div class='line'> </div><div class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">heading</span><span class="p">)</span> <span class="p">{</span>
-</div><div class='line'>        <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;span class=&quot;tocHeading&quot;&gt;&#39;</span> <span class="o">+</span> <span class="nx">heading</span> <span class="o">+</span> <span class="s1">&#39;&lt;/span&gt;&#39;</span><span class="p">);</span>
-</div><div class='line'>    <span class="p">}</span>
-</div><div class='line'> </div><div class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">startLv</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span> <span class="nx">startLv</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
-</div><div class='line'> </div><div class='line'>    <span class="nx">div</span><span class="p">.</span><span class="nx">tableOfContents</span><span class="p">(</span><span class="nx">content</span><span class="p">,</span> <span class="p">{</span> <span class="nx">startLevel</span><span class="o">:</span> <span class="nx">startLv</span> <span class="p">});</span>
-</div><div class='line'>    <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">div</span><span class="p">);</span>
-</div><div class='line'>    <span class="nx">container</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">insertBefore</span><span class="p">);</span>
-</div><div class='line'><span class="p">}</span>
-</div></pre></td></tr></table></div></figure>
-
-
-<h3>Reference the javascript files in your blog</h3>
-
-<p>Add blow lines at the bottom of source/custom/head.html</p>
-
-<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div></pre></td><td class='main  html'><pre><div class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</div><div class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;&#x7b;&#x7b; root_url }}/javascripts/jquery.tableofcontents.min.js&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</div><div class='line'> </div><div class='line'>// !!! Load jQuery before this
-</div><div class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</div><div class='line'>    <span class="nx">jQuery</span><span class="p">.</span><span class="nx">noConflict</span><span class="p">();</span>
-</div><div class='line'><span class="nt">&lt;/script&gt;</span>
-</div><div class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;&#x7b;&#x7b; root_url }}/javascripts/tocgenerator.js&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</div></pre></td></tr></table></div></figure>
-
-
-<h3>Add below lines</h3>
-
-<p>Add below lines to the source/custom/footer.html</p>
-
-<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div><div data-line='9' class='line-number'></div><div data-line='10' class='line-number'></div><div data-line='11' class='line-number'></div><div data-line='12' class='line-number'></div><div data-line='13' class='line-number'></div><div data-line='14' class='line-number'></div><div data-line='15' class='line-number'></div><div data-line='16' class='line-number'></div><div data-line='17' class='line-number'></div><div data-line='18' class='line-number'></div><div data-line='19' class='line-number'></div><div data-line='20' class='line-number'></div><div data-line='21' class='line-number'></div><div data-line='22' class='line-number'></div><div data-line='23' class='line-number'></div><div data-line='24' class='line-number'></div><div data-line='25' class='line-number'></div></pre></td><td class='main  html'><pre><div class='line'>&#x7b;&#x25; if index %}
-</div><div class='line'>  &#x7b;&#x25; comment %}
-</div><div class='line'>  No table of contents on the index page.
-</div><div class='line'>  &#x7b;&#x25; endcomment %}
-</div><div class='line'> </div><div class='line'>&#x7b;&#x25; elsif page.toc == true %}
-</div><div class='line'>  &#x7b;&#x25; if page.tocstartlv %}
-</div><div class='line'>    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</div><div class='line'>    <span class="nx">jQuery</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</div><div class='line'>      <span class="c1">// Put a TOC right before the entry content.</span>
-</div><div class='line'>      <span class="cm">/*global generateTOC*/</span>
-</div><div class='line'>      <span class="nx">generateTOC</span><span class="p">(</span><span class="s1">&#39;.entry-content&#39;</span><span class="p">,</span> <span class="s2">&quot;&#x7b;&#x7b; page.toctitle }}&quot;</span><span class="p">,</span> <span class="s2">&quot;&#x7b;&#x7b; page.tocstartlv }}&quot;</span><span class="p">);</span>
-</div><div class='line'>    <span class="p">});</span>
-</div><div class='line'>    <span class="nt">&lt;/script&gt;</span>
-</div><div class='line'>  &#x7b;&#x25; else %}
-</div><div class='line'>    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</div><div class='line'>    <span class="nx">jQuery</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</div><div class='line'>      <span class="c1">// Put a TOC right before the entry content.</span>
-</div><div class='line'>      <span class="cm">/*global generateTOC*/</span>
-</div><div class='line'>      <span class="nx">generateTOC</span><span class="p">(</span><span class="s1">&#39;.entry-content&#39;</span><span class="p">,</span> <span class="s2">&quot;&#x7b;&#x7b; page.toctitle }}&quot;</span><span class="p">);</span>
-</div><div class='line'>    <span class="p">});</span>
-</div><div class='line'>    <span class="nt">&lt;/script&gt;</span>
-</div><div class='line'>  &#x7b;&#x25; endif %}
-</div><div class='line'> </div><div class='line'>&#x7b;&#x25; endif %}
-</div></pre></td></tr></table></div></figure>
-
-
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/09/18/generate-table-of-contents/">Read on &rarr;</a>
+    </footer>
   
 
 

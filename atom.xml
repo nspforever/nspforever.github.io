@@ -4,7 +4,7 @@
   <title><![CDATA[Gudu's Blog]]></title>
   <link href="http://nspforever.github.io/atom.xml" rel="self"/>
   <link href="http://nspforever.github.io/"/>
-  <updated>2015-09-20T06:00:30+00:00</updated>
+  <updated>2015-09-20T06:19:50+00:00</updated>
   <id>http://nspforever.github.io/</id>
   <author>
     <name><![CDATA[gudu]]></name>
@@ -45,6 +45,9 @@ always generates table of contents from H1, so I decidied to do it by using the 
 <p>Download at <a href="http://fuelyourcoding.com/scripts/toc/">http://fuelyourcoding.com/scripts/toc/</a> and put jquery.tableofcontents.min.js in your source/javascripts
 directory.</p>
 
+<!--more-->
+
+
 <h3>Create tocgenerator.js</h3>
 
 <p>Create a tocgenerator.js under source/javascripts with below content:</p>
@@ -66,7 +69,7 @@ directory.</p>
 
 <h3>Reference the javascript files in your blog</h3>
 
-<p>Add blow lines at the bottom of source/custom/head.html</p>
+<p>Add blow lines at the bottom of source/_include/custom/head.html</p>
 
 <figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div></pre></td><td class='main  html'><pre><div class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 </div><div class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;&#x7b;&#x7b; root_url }}/javascripts/jquery.tableofcontents.min.js&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
@@ -80,7 +83,7 @@ directory.</p>
 
 <h3>Add below lines</h3>
 
-<p>Add below lines to the source/custom/footer.html</p>
+<p>Add below lines to the source/include/custom/footer.html</p>
 
 <figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div><div data-line='9' class='line-number'></div><div data-line='10' class='line-number'></div><div data-line='11' class='line-number'></div><div data-line='12' class='line-number'></div><div data-line='13' class='line-number'></div><div data-line='14' class='line-number'></div><div data-line='15' class='line-number'></div><div data-line='16' class='line-number'></div><div data-line='17' class='line-number'></div><div data-line='18' class='line-number'></div><div data-line='19' class='line-number'></div><div data-line='20' class='line-number'></div><div data-line='21' class='line-number'></div><div data-line='22' class='line-number'></div><div data-line='23' class='line-number'></div><div data-line='24' class='line-number'></div><div data-line='25' class='line-number'></div></pre></td><td class='main  html'><pre><div class='line'>&#x7b;&#x25; if index %}
 </div><div class='line'>  &#x7b;&#x25; comment %}
@@ -105,6 +108,21 @@ directory.</p>
 </div><div class='line'>    <span class="nt">&lt;/script&gt;</span>
 </div><div class='line'>  &#x7b;&#x25; endif %}
 </div><div class='line'> </div><div class='line'>&#x7b;&#x25; endif %}
+</div></pre></td></tr></table></div></figure>
+
+
+<h3>Add below highlighted lines to the post</h3>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number marked start'></div><div data-line='8' class='line-number marked end'></div><div data-line='9' class='line-number'></div><div data-line='10' class='line-number'></div></pre></td><td class='main  yaml'><pre><div class='line'><span class="nn">---</span>
+</div><div class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
+</div><div class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;Hello</span><span class="nv"> </span><span class="s">World!!!&quot;</span>
+</div><div class='line'><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2015-09-18 06:00:21 +0000</span>
+</div><div class='line'><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</div><div class='line'><span class="l-Scalar-Plain">author</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">gudu</span>
+</div><div class='line marked start'><span class="l-Scalar-Plain">toc</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</div><div class='line marked end'><span class="l-Scalar-Plain">tocstartlv</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">3</span>
+</div><div class='line'><span class="l-Scalar-Plain">categories</span><span class="p-Indicator">:</span>
+</div><div class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">octopress</span>
 </div></pre></td></tr></table></div></figure>
 
 

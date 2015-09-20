@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jquery Plug-in | Gudu's Blog]]></title>
   <link href="http://nspforever.github.io/blog/categories/jquery-plug-in/atom.xml" rel="self"/>
   <link href="http://nspforever.github.io/"/>
-  <updated>2015-09-20T06:00:30+00:00</updated>
+  <updated>2015-09-20T06:19:50+00:00</updated>
   <id>http://nspforever.github.io/</id>
   <author>
     <name><![CDATA[gudu]]></name>
@@ -26,6 +26,9 @@ always generates table of contents from H1, so I decidied to do it by using the 
 
 <p>Download at <a href="http://fuelyourcoding.com/scripts/toc/">http://fuelyourcoding.com/scripts/toc/</a> and put jquery.tableofcontents.min.js in your source/javascripts
 directory.</p>
+
+<!--more-->
+
 
 <h3>Create tocgenerator.js</h3>
 
@@ -52,7 +55,7 @@ container.insertBefore(insertBefore);
 
 <h3>Reference the javascript files in your blog</h3>
 
-<p>Add blow lines at the bottom of source/custom/head.html</p>
+<p>Add blow lines at the bottom of source/_include/custom/head.html</p>
 
 <p>```html</p>
 
@@ -74,11 +77,25 @@ container.insertBefore(insertBefore);
 
 <pre><code>
 ###Add below lines
-Add below lines to the source/custom/footer.html
+Add below lines to the source/include/custom/footer.html
 </code></pre>
 
 <p>
 ```</p>
+
+<h3>Add below highlighted lines to the post</h3>
+
+<pre><code class="yaml mark:7,8">---
+layout: post
+title: "Hello World!!!"
+date: 2015-09-18 06:00:21 +0000
+comments: true
+author: gudu
+toc: true
+tocstartlv: 3
+categories:
+- octopress
+</code></pre>
 ]]></content>
   </entry>
   
