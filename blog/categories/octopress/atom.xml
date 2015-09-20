@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Octopress | Gudu's Blog]]></title>
-  <link href="http://yoursite.com/blog/categories/octopress/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2015-09-20T05:47:21+00:00</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://nspforever.github.io/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://nspforever.github.io/"/>
+  <updated>2015-09-20T05:51:49+00:00</updated>
+  <id>http://nspforever.github.io/</id>
   <author>
     <name><![CDATA[gudu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Generate 'Table of Contents']]></title>
-    <link href="http://yoursite.com/blog/2015/09/18/generate-table-of-contents/"/>
+    <link href="http://nspforever.github.io/blog/2015/09/18/generate-table-of-contents/"/>
     <updated>2015-09-18T20:00:32+00:00</updated>
-    <id>http://yoursite.com/blog/2015/09/18/generate-table-of-contents</id>
+    <id>http://nspforever.github.io/blog/2015/09/18/generate-table-of-contents</id>
     <content type="html"><![CDATA[<p>After I got Octopress setup, I found there is no easy way to generate the table of contents of my blog,
 actually there is a way by using the generate_toc extension of rdiscount markdown parser, but the extension
 always generates table of contents from H1, so I decidied to do it by using the tableofcontents jquery plugin.</p>
@@ -56,7 +56,7 @@ container.insertBefore(insertBefore);
 
 <p>```html</p>
 
-<script src="http://yoursite.com//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://nspforever.github.io//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 
 <script src="/javascripts/jquery.tableofcontents.min.js" type="text/javascript"></script>

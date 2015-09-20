@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Gudu's Blog]]></title>
-  <link href="http://yoursite.com/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2015-09-20T05:47:21+00:00</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://nspforever.github.io/atom.xml" rel="self"/>
+  <link href="http://nspforever.github.io/"/>
+  <updated>2015-09-20T05:51:49+00:00</updated>
+  <id>http://nspforever.github.io/</id>
   <author>
     <name><![CDATA[gudu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Test Highlight]]></title>
-    <link href="http://yoursite.com/blog/2015/09/19/test-highlight/"/>
+    <link href="http://nspforever.github.io/blog/2015/09/19/test-highlight/"/>
     <updated>2015-09-19T07:06:41+00:00</updated>
-    <id>http://yoursite.com/blog/2015/09/19/test-highlight</id>
+    <id>http://nspforever.github.io/blog/2015/09/19/test-highlight</id>
     <content type="html"><![CDATA[<h3>C</h3>
 
 <figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number marked start'></div><div data-line='3' class='line-number marked end'></div><div data-line='4' class='line-number'></div></pre></td><td class='main  java'><pre><div class='line'><span class="kt">int</span> <span class="nf">main</span><span class="o">(</span><span class="kt">void</span><span class="o">)</span>
@@ -33,9 +33,9 @@
   
   <entry>
     <title type="html"><![CDATA[Generate 'Table of Contents']]></title>
-    <link href="http://yoursite.com/blog/2015/09/18/generate-table-of-contents/"/>
+    <link href="http://nspforever.github.io/blog/2015/09/18/generate-table-of-contents/"/>
     <updated>2015-09-18T20:00:32+00:00</updated>
-    <id>http://yoursite.com/blog/2015/09/18/generate-table-of-contents</id>
+    <id>http://nspforever.github.io/blog/2015/09/18/generate-table-of-contents</id>
     <content type="html"><![CDATA[<p>After I got Octopress setup, I found there is no easy way to generate the table of contents of my blog,
 actually there is a way by using the generate_toc extension of rdiscount markdown parser, but the extension
 always generates table of contents from H1, so I decidied to do it by using the tableofcontents jquery plugin.</p>
@@ -114,9 +114,9 @@ directory.</p>
   
   <entry>
     <title type="html"><![CDATA[Hello World!!!]]></title>
-    <link href="http://yoursite.com/blog/2015/09/18/hello-world/"/>
+    <link href="http://nspforever.github.io/blog/2015/09/18/hello-world/"/>
     <updated>2015-09-18T06:00:21+00:00</updated>
-    <id>http://yoursite.com/blog/2015/09/18/hello-world</id>
+    <id>http://nspforever.github.io/blog/2015/09/18/hello-world</id>
     <content type="html"><![CDATA[<h3>C</h3>
 
 <figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div></pre></td><td class='main  c'><pre><div class='line'><span class="cp">#include &lt;stdlib.h&gt;</span>

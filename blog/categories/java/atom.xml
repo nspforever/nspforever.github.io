@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Java | Gudu's Blog]]></title>
-  <link href="http://yoursite.com/blog/categories/java/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2015-09-20T05:47:21+00:00</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://nspforever.github.io/blog/categories/java/atom.xml" rel="self"/>
+  <link href="http://nspforever.github.io/"/>
+  <updated>2015-09-20T05:51:49+00:00</updated>
+  <id>http://nspforever.github.io/</id>
   <author>
     <name><![CDATA[gudu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Hello World!!!]]></title>
-    <link href="http://yoursite.com/blog/2015/09/18/hello-world/"/>
+    <link href="http://nspforever.github.io/blog/2015/09/18/hello-world/"/>
     <updated>2015-09-18T06:00:21+00:00</updated>
-    <id>http://yoursite.com/blog/2015/09/18/hello-world</id>
+    <id>http://nspforever.github.io/blog/2015/09/18/hello-world</id>
     <content type="html"><![CDATA[<h3>C</h3>
 
 <pre><code class="c">#include &lt;stdlib.h&gt;
