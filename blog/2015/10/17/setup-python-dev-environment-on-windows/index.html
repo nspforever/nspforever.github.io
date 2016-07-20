@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Swift - Gudu's Blog</title>
+  <title>Windows上Python开发环境的安装与配置 - Gudu's Blog</title>
   <meta name="author" content="gudu">
 
   
-  <meta name="description" content="Category: swift">
+  <meta name="description" content="安装 Python 从https://www.python.org/downloads/windows/%E4%B8%8B%E8%BD%BDWindows x86-64 executable installer
+下载完成后，双击python-x.x.x-amd64.exe,并且勾选&#8221; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://nspforever.github.io/blog/categories/swift/">
+  <link rel="canonical" href="http://nspforever.github.io/blog/2015/10/17/setup-python-dev-environment-on-windows/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Gudu's Blog" type="application/atom+xml">
@@ -83,35 +84,127 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Swift</h1>
+    
+      <h1 class="entry-title">Windows上Python开发环境的安装与配置</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><h2>安装 Python</h2>
 
-  
-  <h2>2015</h2>
-
-<article>
-  
-<h1><a href="/blog/2015/09/18/hello-world/">Hello World!!!</a></h1>
-<time datetime="2015-09-18T06:00:21+00:00" pubdate><span class='month'>Sep</span> <span class='day'>18</span> <span class='year'>2015</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/bash/'>bash</a>, <a class='category' href='/blog/categories/basic/'>basic</a>, <a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/c-number/'>c#</a>, <a class='category' href='/blog/categories/c-plus-plus/'>c++</a>, <a class='category' href='/blog/categories/clipper/'>clipper</a>, <a class='category' href='/blog/categories/coffeescript/'>coffeescript</a>, <a class='category' href='/blog/categories/delphi/'>delphi</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/javascript/'>javascript</a>, <a class='category' href='/blog/categories/matlab/'>matlab</a>, <a class='category' href='/blog/categories/objective-c/'>objective c</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/scala/'>scala</a>, <a class='category' href='/blog/categories/swift/'>swift</a></span>
-</footer>
+<ol>
+<li>从<a href="https://www.python.org/downloads/windows/%E4%B8%8B%E8%BD%BDWindows">https://www.python.org/downloads/windows/%E4%B8%8B%E8%BD%BDWindows</a> x86-64 executable installer</li>
+<li>下载完成后，双击python-x.x.x-amd64.exe,并且勾选&#8221;Add Python x.x to PATH&#8221;，并点击&#8221;Install Now&#8221;</li>
+<li>当你看到下面这个对话框，则代表安装成功</li>
+</ol>
 
 
-</article>
+<h2>安装 pip</h2>
+
+<ol>
+<li>下载get-pip.py (<a href="https://bootstrap.pypa.io/get-pip.py">https://bootstrap.pypa.io/get-pip.py</a>)</li>
+<li>运行python get-pip.py</li>
+</ol>
+
+
+<h2>安装 virtualenvwrapper-win</h2>
+
+<ol>
+<li>pip install virtualenvwrapper-win</li>
+<li>更多关于virtualenvwrapper-win的信息，详见<a href="https://github.com/davidmarble/virtualenvwrapper-win/">https://github.com/davidmarble/virtualenvwrapper-win/</a></li>
+</ol>
+
+
+<h2>安装 PyCharm</h2>
+
+<ol>
+<li>访问<a href="https://www.jetbrains.com/pycharm/download/">https://www.jetbrains.com/pycharm/download/</a> 下载相应的PyCharm版本</li>
+<li>安装PyCharm，并接受默认选项</li>
+</ol>
+
+
+<h2>设置 PyCharm的字体大小</h2>
+
+<ol>
+<li>File->Settings->Apperance</li>
+<li>选中&#8221;Override default fonts by(not recommended)&ldquo;，设置合适的字体大小</li>
+<li>在Settings对话框中选择Editor->General，勾选
+
+<ul>
+<li>&ldquo;Change font size with Ctrol + Mouse Wheel&rdquo;</li>
+<li>&ldquo;Highlight current scope&rdquo;</li>
+</ul>
+</li>
+<li>在Settings对话框中选择Editor->Apperance，勾选
+
+<ul>
+<li>&ldquo;Show line numbers&rdquo;</li>
+<li>&ldquo;Show method separators&rdquo;</li>
+<li>&ldquo;Show white spaces&rdquo;</li>
+</ul>
+</li>
+<li>在Editor->Colors &amp; Fonts->Font中
+
+<ul>
+<li>在Theme下拉框中选择&#8221;Twilight&#8221;并点击&#8221;Save As&hellip;&ldquo;按钮</li>
+<li>在字体下拉框中选择&#8221;Source Code Pro&#8221;，并设置合适的字体大小</li>
+</ul>
+</li>
+</ol>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">gudu</span></span>
+
+      
+
+
+
+
+
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://nspforever.github.io/blog/2015/10/17/setup-python-dev-environment-on-windows/" data-via="" data-counturl="http://nspforever.github.io/blog/2015/10/17/setup-python-dev-environment-on-windows/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/10/15/ways-to-inject-fake-implementation-into-a-unit-under-test/" title="Previous Post: 在单元测试中进行依赖注入">&laquo; 在单元测试中进行依赖注入</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/10/17/django-social-auth/" title="Next Post: 为Django网站添加社交网络账号登录功能">为Django网站添加社交网络账号登录功能 &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
 
 </div>

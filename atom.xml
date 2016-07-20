@@ -4,7 +4,7 @@
   <title><![CDATA[Gudu's Blog]]></title>
   <link href="http://nspforever.github.io/atom.xml" rel="self"/>
   <link href="http://nspforever.github.io/"/>
-  <updated>2015-09-23T09:50:00+00:00</updated>
+  <updated>2016-07-20T10:32:56+00:00</updated>
   <id>http://nspforever.github.io/</id>
   <author>
     <name><![CDATA[gudu]]></name>
@@ -12,6 +12,370 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Run .py File on Windows]]></title>
+    <link href="http://nspforever.github.io/blog/2015/10/17/run-py-file-on-windows/"/>
+    <updated>2015-10-17T05:08:51+00:00</updated>
+    <id>http://nspforever.github.io/blog/2015/10/17/run-py-file-on-windows</id>
+    <content type="html"><![CDATA[<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div></pre></td><td class='main  plain'><pre><div class='line'>C:\>assoc .py=Python
+</div><div class='line'>C:\>ftype Python="%VIRTUAL_ENV%\scripts\python.exe %1 %*"</div></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[为Django网站添加社交网络账号登录功能]]></title>
+    <link href="http://nspforever.github.io/blog/2015/10/17/django-social-auth/"/>
+    <updated>2015-10-17T02:51:09+00:00</updated>
+    <id>http://nspforever.github.io/blog/2015/10/17/django-social-auth</id>
+    <content type="html"><![CDATA[<h2>创建virtualenv</h2>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div></pre></td><td class='main  plain'><pre><div class='line'>$ mkvirtualenv social_auth
+</div><div class='line'>$ pip install django</div></pre></td></tr></table></div></figure>
+
+
+<h2>创建新的Django项目</h2>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div></pre></td><td class='main  plain'><pre><div class='line'>$ django-admin.py startproject social_auth
+</div><div class='line'>$ cd social_auth
+</div><div class='line'>$ python manage.py startapp social_auth_app</div></pre></td></tr></table></div></figure>
+
+
+<h2>生成数据库表</h2>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div><div data-line='9' class='line-number'></div><div data-line='10' class='line-number'></div><div data-line='11' class='line-number'></div><div data-line='12' class='line-number'></div><div data-line='13' class='line-number'></div><div data-line='14' class='line-number'></div><div data-line='15' class='line-number'></div><div data-line='16' class='line-number'></div><div data-line='17' class='line-number'></div><div data-line='18' class='line-number'></div><div data-line='19' class='line-number'></div><div data-line='20' class='line-number'></div><div data-line='21' class='line-number'></div></pre></td><td class='main  plain'><pre><div class='line'>$ python manage.py migrate
+</div><div class='line'>(social_auth) E:\dev\python\social_auth>python manage.py migrate
+</div><div class='line'>Operations to perform:
+</div><div class='line'>  Synchronize unmigrated apps: staticfiles, messages
+</div><div class='line'>  Apply all migrations: contenttypes, admin, auth, sessions
+</div><div class='line'>Synchronizing apps without migrations:
+</div><div class='line'>  Creating tables...
+</div><div class='line'>    Running deferred SQL...
+</div><div class='line'>  Installing custom SQL...
+</div><div class='line'>Running migrations:
+</div><div class='line'>  Rendering model states... DONE
+</div><div class='line'>  Applying contenttypes.0001_initial... OK
+</div><div class='line'>  Applying auth.0001_initial... OK
+</div><div class='line'>  Applying admin.0001_initial... OK
+</div><div class='line'>  Applying contenttypes.0002_remove_content_type_name... OK
+</div><div class='line'>  Applying auth.0002_alter_permission_name_max_length... OK
+</div><div class='line'>  Applying auth.0003_alter_user_email_max_length... OK
+</div><div class='line'>  Applying auth.0004_alter_user_username_opts... OK
+</div><div class='line'>  Applying auth.0005_alter_user_last_login_null... OK
+</div><div class='line'>  Applying auth.0006_require_contenttypes_0002... OK
+</div><div class='line'>  Applying sessions.0001_initial... OK</div></pre></td></tr></table></div></figure>
+
+
+<h2>创建templates目录</h2>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div></pre></td><td class='main  plain'><pre><div class='line'>$ mkdir templates</div></pre></td></tr></table></div></figure>
+
+
+<h2>在Setting.py配置templates目录</h2>
+
+<p>修改如下代码的第4行，将os.path.join(BASE_DIR, &lsquo;templates&rsquo;)设置为templates目录</p>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div><div data-line='9' class='line-number'></div><div data-line='10' class='line-number'></div><div data-line='11' class='line-number'></div><div data-line='12' class='line-number'></div><div data-line='13' class='line-number'></div><div data-line='14' class='line-number'></div><div data-line='15' class='line-number'></div></pre></td><td class='main  plain'><pre><div class='line'>TEMPLATES = [
+</div><div class='line'>    {
+</div><div class='line'>        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+</div><div class='line'>        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+</div><div class='line'>        'APP_DIRS': True,
+</div><div class='line'>        'OPTIONS': {
+</div><div class='line'>            'context_processors': [
+</div><div class='line'>                'django.template.context_processors.debug',
+</div><div class='line'>                'django.template.context_processors.request',
+</div><div class='line'>                'django.contrib.auth.context_processors.auth',
+</div><div class='line'>                'django.contrib.messages.context_processors.messages',
+</div><div class='line'>            ],
+</div><div class='line'>        },
+</div><div class='line'>    },
+</div><div class='line'>]</div></pre></td></tr></table></div></figure>
+
+
+<h2>测试</h2>
+
+<p>运行如下命令</p>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div></pre></td><td class='main  plain'><pre><div class='line'>$python manage.py runserver</div></pre></td></tr></table></div></figure>
+
+
+<p>并用浏览器访问<a href="http://127.0.0.1:8000/,">http://127.0.0.1:8000/,</a> 如果你能看到类似于下图的页面说明一切正常</p>
+
+<h2>安装python-social-auth</h2>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div></pre></td><td class='main  plain'><pre><div class='line'>$pip install python-social-auth</div></pre></td></tr></table></div></figure>
+
+
+<h2>配置python-social-auth</h2>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div><div data-line='9' class='line-number'></div><div data-line='10' class='line-number'></div><div data-line='11' class='line-number'></div><div data-line='12' class='line-number'></div><div data-line='13' class='line-number'></div><div data-line='14' class='line-number'></div><div data-line='15' class='line-number'></div><div data-line='16' class='line-number'></div><div data-line='17' class='line-number'></div><div data-line='18' class='line-number'></div><div data-line='19' class='line-number'></div><div data-line='20' class='line-number'></div><div data-line='21' class='line-number'></div><div data-line='22' class='line-number'></div><div data-line='23' class='line-number'></div><div data-line='24' class='line-number'></div><div data-line='25' class='line-number'></div><div data-line='26' class='line-number'></div><div data-line='27' class='line-number'></div><div data-line='28' class='line-number'></div><div data-line='29' class='line-number'></div><div data-line='30' class='line-number'></div><div data-line='31' class='line-number'></div><div data-line='32' class='line-number'></div><div data-line='33' class='line-number'></div><div data-line='34' class='line-number'></div><div data-line='35' class='line-number'></div><div data-line='36' class='line-number'></div><div data-line='37' class='line-number'></div></pre></td><td class='main  plain'><pre><div class='line'>INSTALLED_APPS = (
+</div><div class='line'>    'django.contrib.admin',
+</div><div class='line'>    'django.contrib.auth',
+</div><div class='line'>    'django.contrib.contenttypes',
+</div><div class='line'>    'django.contrib.sessions',
+</div><div class='line'>    'django.contrib.messages',
+</div><div class='line'>    'django.contrib.staticfiles',
+</div><div class='line'>    'django_social_app',
+</div><div class='line'>    'social.apps.django_app.default',
+</div><div class='line'>)
+</div><div class='line'> </div><div class='line'>TEMPLATES = [
+</div><div class='line'>    {
+</div><div class='line'>        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+</div><div class='line'>        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+</div><div class='line'>        'APP_DIRS': True,
+</div><div class='line'>        'OPTIONS': {
+</div><div class='line'>            'context_processors': [
+</div><div class='line'>                'django.template.context_processors.request',
+</div><div class='line'>                'django.contrib.auth.context_processors.auth',
+</div><div class='line'>                'django.core.context_processors.debug',
+</div><div class='line'>                'django.core.context_processors.i18n',
+</div><div class='line'>                'django.core.context_processors.media',
+</div><div class='line'>                'django.core.context_processors.static',
+</div><div class='line'>                'django.core.context_processors.tz',
+</div><div class='line'>                'django.contrib.messages.context_processors.messages',
+</div><div class='line'>                'social.apps.django_app.context_processors.backends',
+</div><div class='line'>                'social.apps.django_app.context_processors.login_redirect',
+</div><div class='line'>            ],
+</div><div class='line'>        },
+</div><div class='line'>    },
+</div><div class='line'>]
+</div><div class='line'>NOTE: Since we’re using LinkedIn Social Authentication, we need the Linkedin OAuth2 backend:
+</div><div class='line'>AUTHENTICATION_BACKENDS = (
+</div><div class='line'>    'social.backends.linkedin.LinkedinOAuth2',
+</div><div class='line'>    'django.contrib.auth.backends.ModelBackend',
+</div><div class='line'>)</div></pre></td></tr></table></div></figure>
+
+
+<h2>生成数据表</h2>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div><div data-line='9' class='line-number'></div><div data-line='10' class='line-number'></div><div data-line='11' class='line-number'></div><div data-line='12' class='line-number'></div><div data-line='13' class='line-number'></div><div data-line='14' class='line-number'></div><div data-line='15' class='line-number'></div></pre></td><td class='main  plain'><pre><div class='line'>$manage.py makemigrations
+</div><div class='line'>$manage.py migrate
+</div><div class='line'> </div><div class='line'>Operations to perform:
+</div><div class='line'>  Synchronize unmigrated apps: staticfiles, messages
+</div><div class='line'>  Apply all migrations: default, admin, sessions, auth, contenttypes
+</div><div class='line'>Synchronizing apps without migrations:
+</div><div class='line'>  Creating tables...
+</div><div class='line'>    Running deferred SQL...
+</div><div class='line'>  Installing custom SQL...
+</div><div class='line'>Running migrations:
+</div><div class='line'>  Rendering model states... DONE
+</div><div class='line'>  Applying default.0001_initial... OK
+</div><div class='line'>  Applying default.0002_add_related_name... OK
+</div><div class='line'>  Applying default.0003_alter_email_max_length... OK</div></pre></td></tr></table></div></figure>
+
+
+<h2>注册LinkedIn应用</h2>
+
+<ol>
+<li>访问<a href="https://www.linkedin.com/developer/apps,">https://www.linkedin.com/developer/apps,</a> 并创建一个LinkedIn Application</li>
+<li>在Authorized Redirect URLs:文本框中填写</li>
+</ol>
+
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div></pre></td><td class='main  plain'><pre><div class='line'>http://127.0.0.1:8000/complete/linkedin-oauth2/</div></pre></td></tr></table></div></figure>
+
+
+<p>并点击&#8221;Add&#8221;按钮，然后点击Update按钮
+3. 修改Settings.py,添加如下代码:</p>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div></pre></td><td class='main  plain'><pre><div class='line'>SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = 'update me' #LinkedIn App的Client ID
+</div><div class='line'>SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'update me' #LinkedIn App的Client secret
+</div><div class='line'>SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/home/'
+</div><div class='line'>SOCIAL_AUTH_LOGIN_URL = '/'</div></pre></td></tr></table></div></figure>
+
+
+<h2>更新urls.py</h2>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div></pre></td><td class='main  plain'><pre><div class='line'>urlpatterns = [
+</div><div class='line'>    url(r'^admin/', include(admin.site.urls)),
+</div><div class='line'>    url('', include('social.apps.django_app.urls', namespace='social')),
+</div><div class='line'>    url(r'^$', 'social_auth_app.views.login'),
+</div><div class='line'>    url(r'^home/$', 'social_auth_app.views.home'),
+</div><div class='line'>    url(r'^logout/$', 'social_auth_app.views.logout'),
+</div><div class='line'>]</div></pre></td></tr></table></div></figure>
+
+
+<h2>更新Views</h2>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div><div data-line='9' class='line-number'></div><div data-line='10' class='line-number'></div><div data-line='11' class='line-number'></div><div data-line='12' class='line-number'></div><div data-line='13' class='line-number'></div><div data-line='14' class='line-number'></div><div data-line='15' class='line-number'></div><div data-line='16' class='line-number'></div><div data-line='17' class='line-number'></div><div data-line='18' class='line-number'></div></pre></td><td class='main  plain'><pre><div class='line'>from django.shortcuts import render_to_response, redirect
+</div><div class='line'>from django.contrib.auth import logout as auth_logout
+</div><div class='line'>from django.contrib.auth.decorators import login_required
+</div><div class='line'>from django.template.context import RequestContext
+</div><div class='line'> </div><div class='line'> </div><div class='line'>def login(request):
+</div><div class='line'>    return render_to_response('login.html', context=RequestContext(request))
+</div><div class='line'> </div><div class='line'> </div><div class='line'>@login_required(login_url='/')
+</div><div class='line'>def home(request):
+</div><div class='line'>    return render_to_response('home.html')
+</div><div class='line'> </div><div class='line'> </div><div class='line'>def logout(request):
+</div><div class='line'>    auth_logout(request)
+</div><div class='line'>    return redirect('/')
+</div></pre></td></tr></table></div></figure>
+
+
+<h2>更新Templates</h2>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Windows上Python开发环境的安装与配置]]></title>
+    <link href="http://nspforever.github.io/blog/2015/10/17/setup-python-dev-environment-on-windows/"/>
+    <updated>2015-10-17T01:44:17+00:00</updated>
+    <id>http://nspforever.github.io/blog/2015/10/17/setup-python-dev-environment-on-windows</id>
+    <content type="html"><![CDATA[<h2>安装 Python</h2>
+
+<ol>
+<li>从<a href="https://www.python.org/downloads/windows/%E4%B8%8B%E8%BD%BDWindows">https://www.python.org/downloads/windows/%E4%B8%8B%E8%BD%BDWindows</a> x86-64 executable installer</li>
+<li>下载完成后，双击python-x.x.x-amd64.exe,并且勾选&#8221;Add Python x.x to PATH&#8221;，并点击&#8221;Install Now&#8221;</li>
+<li>当你看到下面这个对话框，则代表安装成功</li>
+</ol>
+
+
+<h2>安装 pip</h2>
+
+<ol>
+<li>下载get-pip.py (<a href="https://bootstrap.pypa.io/get-pip.py">https://bootstrap.pypa.io/get-pip.py</a>)</li>
+<li>运行python get-pip.py</li>
+</ol>
+
+
+<h2>安装 virtualenvwrapper-win</h2>
+
+<ol>
+<li>pip install virtualenvwrapper-win</li>
+<li>更多关于virtualenvwrapper-win的信息，详见<a href="https://github.com/davidmarble/virtualenvwrapper-win/">https://github.com/davidmarble/virtualenvwrapper-win/</a></li>
+</ol>
+
+
+<h2>安装 PyCharm</h2>
+
+<ol>
+<li>访问<a href="https://www.jetbrains.com/pycharm/download/">https://www.jetbrains.com/pycharm/download/</a> 下载相应的PyCharm版本</li>
+<li>安装PyCharm，并接受默认选项</li>
+</ol>
+
+
+<h2>设置 PyCharm的字体大小</h2>
+
+<ol>
+<li>File->Settings->Apperance</li>
+<li>选中&#8221;Override default fonts by(not recommended)&ldquo;，设置合适的字体大小</li>
+<li>在Settings对话框中选择Editor->General，勾选
+
+<ul>
+<li>&ldquo;Change font size with Ctrol + Mouse Wheel&rdquo;</li>
+<li>&ldquo;Highlight current scope&rdquo;</li>
+</ul>
+</li>
+<li>在Settings对话框中选择Editor->Apperance，勾选
+
+<ul>
+<li>&ldquo;Show line numbers&rdquo;</li>
+<li>&ldquo;Show method separators&rdquo;</li>
+<li>&ldquo;Show white spaces&rdquo;</li>
+</ul>
+</li>
+<li>在Editor->Colors &amp; Fonts->Font中
+
+<ul>
+<li>在Theme下拉框中选择&#8221;Twilight&#8221;并点击&#8221;Save As&hellip;&ldquo;按钮</li>
+<li>在字体下拉框中选择&#8221;Source Code Pro&#8221;，并设置合适的字体大小</li>
+</ul>
+</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在单元测试中进行依赖注入]]></title>
+    <link href="http://nspforever.github.io/blog/2015/10/15/ways-to-inject-fake-implementation-into-a-unit-under-test/"/>
+    <updated>2015-10-15T09:30:47+00:00</updated>
+    <id>http://nspforever.github.io/blog/2015/10/15/ways-to-inject-fake-implementation-into-a-unit-under-test</id>
+    <content type="html"><![CDATA[<h4>在单元测试中，通常用一下方法进行依赖注入:</h4>
+
+<ol>
+<li><strong>在构造函数传入一个接口实例，并把它保存在成员变量中</strong></li>
+<li><strong>通过公有成员接受一个接口的实例</strong></li>
+<li><strong>在调用被测试的方法之前用如下的方法之一接受一个接口的实例</strong>
+
+<ul>
+<li>通过方法的参数传入一个接口的实例(paramter injection)</li>
+<li>通过一个工厂类(factory class)</li>
+<li>通过一个本地的工厂方法(factory method)</li>
+<li>以上几种方法的组合</li>
+</ul>
+</li>
+</ol>
+
+
+<h4>Further Readings:</h4>
+
+<p>Inversion of Control(IoC) Principle</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MONAD in Javascript]]></title>
+    <link href="http://nspforever.github.io/blog/2015/09/29/monad-in-javascript/"/>
+    <updated>2015-09-29T10:11:57+00:00</updated>
+    <id>http://nspforever.github.io/blog/2015/09/29/monad-in-javascript</id>
+    <content type="html"><![CDATA[<h4>Axioms</h4>
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div></pre></td><td class='main  javascript'><pre><div class='line'><span class="nx">unit</span><span class="p">(</span><span class="nx">value</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="o">===</span> <span class="nx">f</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+</div><div class='line'><span class="nx">monad</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">unit</span><span class="p">)</span> <span class="o">===</span> <span class="nx">monad</span>
+</div><div class='line'><span class="nx">monad</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">f</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span><span class="nx">g</span><span class="p">)</span> <span class="o">===</span> <span class="nx">monad</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</div><div class='line'>    <span class="k">return</span> <span class="nx">f</span><span class="p">(</span><span class="nx">value</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span><span class="nx">g</span><span class="p">);</span>
+</div><div class='line'><span class="p">})</span>
+</div></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div><div data-line='9' class='line-number'></div></pre></td><td class='main  javascript'><pre><div class='line'><span class="kd">function</span> <span class="nx">MONAD</span><span class="p">()</span> <span class="p">{</span>
+</div><div class='line'>    <span class="k">return</span> <span class="kd">function</span> <span class="nx">unit</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</div><div class='line'>        <span class="kd">var</span> <span class="nx">monad</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+</div><div class='line'>        <span class="nx">monad</span><span class="p">.</span><span class="nx">bind</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
+</div><div class='line'>            <span class="k">return</span> <span class="nx">func</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+</div><div class='line'>        <span class="p">};</span>
+</div><div class='line'>        <span class="k">return</span> <span class="nx">monad</span><span class="p">;</span>
+</div><div class='line'>    <span class="p">}</span>
+</div><div class='line'><span class="p">}</span>
+</div></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div></pre></td><td class='main  javascript'><pre><div class='line'><span class="kd">var</span> <span class="nx">identity</span> <span class="o">=</span> <span class="nx">MONAD</span><span class="p">();</span>
+</div><div class='line'><span class="kd">var</span> <span class="nx">monad</span> <span class="o">=</span> <span class="nx">identity</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">);</span>
+</div><div class='line'><span class="nx">monad</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">alert</span><span class="p">());</span>
+</div></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class='highlight' linenos='true'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div><div data-line='9' class='line-number'></div><div data-line='10' class='line-number'></div><div data-line='11' class='line-number'></div><div data-line='12' class='line-number'></div><div data-line='13' class='line-number'></div><div data-line='14' class='line-number'></div><div data-line='15' class='line-number'></div><div data-line='16' class='line-number'></div><div data-line='17' class='line-number'></div></pre></td><td class='main  javascript'><pre><div class='line'><span class="c1">//Improved version</span>
+</div><div class='line'><span class="kd">function</span> <span class="nx">MONAD</span><span class="p">()</span> <span class="p">{</span>
+</div><div class='line'>    <span class="kd">var</span> <span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+</div><div class='line'>    <span class="kd">function</span> <span class="nx">unit</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</div><div class='line'>        <span class="kd">var</span> <span class="nx">monad</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">prototype</span><span class="p">);</span>
+</div><div class='line'>        <span class="nx">monad</span><span class="p">.</span><span class="nx">bind</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+</div><div class='line'>            <span class="k">return</span> <span class="nx">func</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="p">[</span><span class="nx">value</span><span class="p">].</span><span class="nx">concat</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">args</span> <span class="o">||</span> <span class="p">[])));</span>
+</div><div class='line'>        <span class="p">};</span>
+</div><div class='line'>        <span class="k">return</span> <span class="nx">monad</span><span class="p">;</span>
+</div><div class='line'>    <span class="p">}</span>
+</div><div class='line'> </div><div class='line'>    <span class="nx">unit</span><span class="p">.</span><span class="nx">method</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
+</div><div class='line'>        <span class="nx">prototype</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">func</span><span class="p">;</span>
+</div><div class='line'>        <span class="k">return</span> <span class="nx">unit</span><span class="p">;</span>
+</div><div class='line'>    <span class="p">}</span>
+</div><div class='line'>    <span class="k">return</span> <span class="nx">unit</span><span class="p">;</span>
+</div><div class='line'><span class="p">}</span>
+</div></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Test Highlight]]></title>

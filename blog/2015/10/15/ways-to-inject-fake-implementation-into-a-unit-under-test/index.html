@@ -5,11 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Swift - Gudu's Blog</title>
+  <title>在单元测试中进行依赖注入 - Gudu's Blog</title>
   <meta name="author" content="gudu">
 
   
-  <meta name="description" content="Category: swift">
+  <meta name="description" content="在单元测试中，通常用一下方法进行依赖注入: 在构造函数传入一个接口实例，并把它保存在成员变量中
+通过公有成员接受一个接口的实例
+在调用被测试的方法之前用如下的方法之一接受一个接口的实例 通过方法的参数传入一个接口的实例(paramter injection)
+通过一个工厂类(factory &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://nspforever.github.io/blog/categories/swift/">
+  <link rel="canonical" href="http://nspforever.github.io/blog/2015/10/15/ways-to-inject-fake-implementation-into-a-unit-under-test/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Gudu's Blog" type="application/atom+xml">
@@ -83,35 +86,85 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Swift</h1>
+    
+      <h1 class="entry-title">在单元测试中进行依赖注入</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><h4>在单元测试中，通常用一下方法进行依赖注入:</h4>
 
-  
-  <h2>2015</h2>
+<ol>
+<li><strong>在构造函数传入一个接口实例，并把它保存在成员变量中</strong></li>
+<li><strong>通过公有成员接受一个接口的实例</strong></li>
+<li><strong>在调用被测试的方法之前用如下的方法之一接受一个接口的实例</strong>
 
-<article>
-  
-<h1><a href="/blog/2015/09/18/hello-world/">Hello World!!!</a></h1>
-<time datetime="2015-09-18T06:00:21+00:00" pubdate><span class='month'>Sep</span> <span class='day'>18</span> <span class='year'>2015</span></time>
+<ul>
+<li>通过方法的参数传入一个接口的实例(paramter injection)</li>
+<li>通过一个工厂类(factory class)</li>
+<li>通过一个本地的工厂方法(factory method)</li>
+<li>以上几种方法的组合</li>
+</ul>
+</li>
+</ol>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/bash/'>bash</a>, <a class='category' href='/blog/categories/basic/'>basic</a>, <a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/c-number/'>c#</a>, <a class='category' href='/blog/categories/c-plus-plus/'>c++</a>, <a class='category' href='/blog/categories/clipper/'>clipper</a>, <a class='category' href='/blog/categories/coffeescript/'>coffeescript</a>, <a class='category' href='/blog/categories/delphi/'>delphi</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/javascript/'>javascript</a>, <a class='category' href='/blog/categories/matlab/'>matlab</a>, <a class='category' href='/blog/categories/objective-c/'>objective c</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/scala/'>scala</a>, <a class='category' href='/blog/categories/swift/'>swift</a></span>
-</footer>
 
+<h4>Further Readings:</h4>
 
-</article>
-
+<p>Inversion of Control(IoC) Principle</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">gudu</span></span>
+
+      
+
+
+
+
+
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://nspforever.github.io/blog/2015/10/15/ways-to-inject-fake-implementation-into-a-unit-under-test/" data-via="" data-counturl="http://nspforever.github.io/blog/2015/10/15/ways-to-inject-fake-implementation-into-a-unit-under-test/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/09/29/monad-in-javascript/" title="Previous Post: MONAD in Javascript">&laquo; MONAD in Javascript</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/10/17/setup-python-dev-environment-on-windows/" title="Next Post: Windows上Python开发环境的安装与配置">Windows上Python开发环境的安装与配置 &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
 
 </div>
